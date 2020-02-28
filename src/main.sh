@@ -75,10 +75,11 @@ TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/cosmwasm_verify.XXXXXXXXX")
     echo "Expected: $EXPECTED_CHECKSUM"
     echo "Actual:   $CHECKSUM"
     echo
-    echo "A verification failure can have many different reasons, including"
-    echo "a malitious code upload. Please check the above output for hints on"
-    echo "problems in the verification process. You can also access the local"
-    echo "copy of the downloaded source, which is in:"
+    echo "A verification failure can have many different reasons, including a"
+    echo "malicious code upload. Don't panic – most of the time it's a small"
+    echo "mistake in the verification or code upload process. Please check the"
+    echo "above output for hints on problems during the verification."
+    echo "You can access the local copy of the downloaded source, which is in:"
     echo "$TMP_DIR"
     return 15
   fi
