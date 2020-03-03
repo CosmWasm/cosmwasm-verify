@@ -63,7 +63,7 @@ different builder but should be handles equally by CosmWasm Verify.
 
 ## Conventions
 
-In order to make our lifes easier, we need a tradeof between flexibility and
+In order to make our lifes easier, we need a trade-off between flexibility and
 pre-defined rules. Here are a set of conventions required for CosmWasm Verify
 to work.
 
