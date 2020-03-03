@@ -67,10 +67,19 @@ In order to make our lifes easier, we need a trade-off between flexibility and
 pre-defined rules. Here are a set of conventions required for CosmWasm Verify
 to work.
 
-1. The builder is a docker image that works out of the box with `docker run <builder>`
-2. The builder must create a `contract.wasm` in the current directory
-3. The source URL points to an optionally compressed tar archive that includes a single top directory which.
-4. All checksums are lower hex encoded SHA-256 hashes
+### The builder
+
+1. The builder is a docker image that works out of the box with `docker run <builder>`.
+1. The builder docker image contains at least two name components (organization and name) and does not exceed a length of 128 ASCII chars.<sup>[1]</sup>
+1. The builder takes a volume mounted at `/code` which is the root of the code to be built.
+1. The builder must create a `contract.wasm` in the current directory.
+
+### Others
+
+1. The source URL points to an optionally compressed tar archive that includes a single top directory which.
+1. All checksums are lower hex encoded SHA-256 hashes
+
+<sup>[1]</sup> This is enforced by the blockchain, not CosmWasm Verify.
 
 ## Requirements
 

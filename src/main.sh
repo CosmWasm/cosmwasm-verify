@@ -1,6 +1,9 @@
 #!/bin/bash
 set -o errexit -o nounset -o pipefail
 
+# shellcheck source=src/constants.sh
+source "$COSMWASM_VERIFY_SRC/constants.sh"
+
 function sha256() {
   FILE="$1"
 
@@ -56,7 +59,7 @@ TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/cosmwasm_verify.XXXXXXXXX")
 
   # TODO: make this call builder agnostic
   docker run --rm \
-    -v "$(pwd):/code" \
+    -v "$(pwd):/$MOUNTPOINT_CODE" \
     --mount type=volume,source="$CACHE_KEY",target=/code/target \
     --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
     "$BUILDER_IMAGE"
