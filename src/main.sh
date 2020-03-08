@@ -44,13 +44,18 @@ BUILDER_IMAGE="$2"
 EXPECTED_CHECKSUM="$3"
 
 TMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/cosmwasm_verify.XXXXXXXXX")
+SOURCE_DIR="$TMP_DIR/source"
+mkdir "$SOURCE_DIR"
 
 (
   echo "Navigating into working directory $TMP_DIR ..."
-  cd "$TMP_DIR"
+  cd "$SOURCE_DIR"
 
-  echo "Downloading and extracting $SOURCE_URL ..."
-  wget --no-verbose -O - "$SOURCE_URL" | tar -x --strip-components 1
+  DOWNLOAD_FILE="$TMP_DIR/cosmwasm_verify_download.tar"
+  echo "Downloading $SOURCE_URL ..."
+  wget --no-verbose -O "$DOWNLOAD_FILE" "$SOURCE_URL"
+  echo "Source code checksum $(sha256 "$DOWNLOAD_FILE")"
+  tar -x --strip-components 1 -f "$DOWNLOAD_FILE"
 
   # echo "Files in working directory:"
   # ls .
