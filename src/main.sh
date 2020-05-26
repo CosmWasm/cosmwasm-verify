@@ -54,7 +54,8 @@ mkdir "$SOURCE_DIR"
   DOWNLOAD_FILE="$TMP_DIR/cosmwasm_verify_download.tar"
   echo "Downloading $SOURCE_URL ..."
   wget --no-verbose -O "$DOWNLOAD_FILE" "$SOURCE_URL"
-  echo "Source code checksum $(sha256 "$DOWNLOAD_FILE")"
+  SOURCE_CHECKSUM=$(sha256 "$DOWNLOAD_FILE")
+  echo "Source code checksum $SOURCE_CHECKSUM"
   tar -x --strip-components 1 -f "$DOWNLOAD_FILE"
 
   # echo "Files in working directory:"
@@ -77,6 +78,11 @@ mkdir "$SOURCE_DIR"
 
   if [ "$CHECKSUM" == "$EXPECTED_CHECKSUM" ]; then
     echo "👏 Verification succeeded"
+    echo
+    echo "Source URL:      $SOURCE_URL"
+    echo "Source checksum: $SOURCE_CHECKSUM"
+    echo "Builder:         $BUILDER_IMAGE"
+    echo "Build checksum:  $CHECKSUM"
     return 0
   else
     echo "Oh no, something went wrong 😞"
