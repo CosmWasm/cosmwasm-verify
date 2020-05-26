@@ -37,7 +37,7 @@ of stuff during the build process, which is meant for your entertainment and deb
 Setup the script in your session with
 
 ```
-git clone https://github.com/confio/cosmwasm-verify
+git clone https://github.com/CosmWasm/cosmwasm-verify
 export PATH="$PWD/cosmwasm-verify/bin:$PATH"
 ```
 
