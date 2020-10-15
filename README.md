@@ -45,9 +45,9 @@ An example call would be
 
 ```sh
 cosmwasm-verify \
-  https://crates.io/api/v1/crates/cw-nameservice/0.1.0/download \
-  confio/cosmwasm-opt:0.6.2 \
-  66128c5c0cd38e6b908b03d41eba8c9e9befb79b34683e334d7a8bbe74d5df41
+  https://crates.io/api/v1/crates/cw-erc20/0.7.0/download \
+  cosmwasm/rust-optimizer:0.10.4 \
+  d04368320ad55089384adb171aaea39e43d710d7608829adba0300ed30aa2988
 
 # Shows the return code of the last script
 echo $?
@@ -72,7 +72,7 @@ to work.
 1. The builder is a docker image that works out of the box with `docker run <builder>`.
 1. The builder docker image contains at least two name components (organization and name) and does not exceed a length of 128 ASCII chars.<sup>[1]</sup>
 1. The builder takes a volume mounted at `/code` which is the root of the code to be built.
-1. The builder must create a `contract.wasm` in the current directory.
+1. The builder must create an `artifacts/` directory in the current directory with a `<contract_name>.wasm` for each compiled contract.
 
 ### Others
 

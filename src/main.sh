@@ -70,7 +70,8 @@ mkdir "$SOURCE_DIR"
     --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \
     "$BUILDER_IMAGE"
 
-  CHECKSUM=$(sha256 contract.wasm)
+  # TODO: this only works with one file
+  CHECKSUM=$(sha256 artifacts/*.wasm)
 
   echo ""
   echo "- - - - - - - - - - - - - - - - - - - -"
